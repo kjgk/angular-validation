@@ -8,7 +8,7 @@
   },
   "homepage": "http://huei90.github.io/angular-validation/",
   "scripts": {
-    "test": "grunt karma",
+    "test": "grunt protractor",
     "build": "grunt build",
     "development": "grunt dev"
   },
@@ -38,6 +38,7 @@
     "grunt-contrib-watch": "~0.6.1",
     "grunt-jsbeautifier": "^0.2.7",
     "grunt-karma": "~0.9.0",
+    "grunt-protractor-runner": "^1.1.4",
     "karma": "~0.12.1",
     "karma-chrome-launcher": "~0.1.2",
     "karma-coffee-preprocessor": "~0.2.1",

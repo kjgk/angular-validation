@@ -85,6 +85,17 @@ module.exports = function(grunt) {
             angular1_3: {
                 configFile: 'config/karma.conf.angular.1.3.js'
             }
+        },
+        protractor: {
+            options: {
+                configFile: "config/test.conf.js", // Default config file
+                keepAlive: false, // If false, the grunt process stops when the test fails.
+                noColor: false, // If true, protractor will not use colors in its output.
+                args: {
+                    // Arguments passed to the command
+                }
+            },
+            all: {}
         }
     });
 
