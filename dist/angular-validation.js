@@ -488,7 +488,11 @@
                         /**
                          * Valid/Invalid Message
                          */
-                        element.after('<span></span>');
+                        if (element.parent().hasClass('input-group')) {
+                            element.parent().after('<span></span>');
+                        } else {
+                            element.after('<span></span>');
+                        }
 
                         /**
                          * Set initial validity to false if no boolean value is transmitted
