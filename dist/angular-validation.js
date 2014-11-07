@@ -296,6 +296,7 @@
                  * @param ctrl
                  * @returns {}
                  */
+				 /**
                 var validFunc = function(element, validMessage, validation, callback, ctrl) {
                     if ($validationProvider.showSuccessMessage) {
                         element.next().html($validationProvider.getSuccessHTML(validMessage || $validationProvider.getDefaultMsg(validation).success));
@@ -307,8 +308,26 @@
 
                     return true;
                 };
+				*/
+				var validFunc = function (element, validMessage, validation, callback, ctrl) {
+                    var target;
+                    if (element.parent().hasClass('input-group')) {
+                        target = element.parent().next();
+                    } else {
+                        target = element.next();
+                    }
+                    if ($validationProvider.showSuccessMessage) {
+                        target.html($validationProvider.getSuccessHTML(validMessage || $validationProvider.getDefaultMsg(validation).success));
+                    } else {
+                        target.html('');
+                        target.parent().removeClass('has-error');
+                    }
+                    ctrl.$setValidity(ctrl.$name, true);
+                    if (callback) callback();
 
-
+                    return true;
+                };
+				
                 /**
                  * Do this function if validation invalid
                  * @param element
@@ -318,11 +337,31 @@
                  * @param ctrl
                  * @returns {}
                  */
-                var invalidFunc = function(element, validMessage, validation, callback, ctrl) {
+                
+				/**
+				var invalidFunc = function(element, validMessage, validation, callback, ctrl) {
                     if ($validationProvider.showErrorMessage) {
                         element.next().html($validationProvider.getErrorHTML(validMessage || $validationProvider.getDefaultMsg(validation).error));
                     } else {
                         element.next().html('');
+                    }
+                    ctrl.$setValidity(ctrl.$name, false);
+                    if (callback) callback();
+
+                    return false;
+                };*/
+				var invalidFunc = function (element, validMessage, validation, callback, ctrl) {
+                    var target;
+                    if (element.parent().hasClass('input-group')) {
+                        target = element.parent().next();
+                    } else {
+                        target = element.next();
+                    }
+                    if ($validationProvider.showErrorMessage) {
+                        target.html($validationProvider.getErrorHTML(validMessage || $validationProvider.getDefaultMsg(validation).error));
+                        target.parent().addClass('has-error');
+                    } else {
+                        target.html('');
                     }
                     ctrl.$setValidity(ctrl.$name, false);
                     if (callback) callback();
