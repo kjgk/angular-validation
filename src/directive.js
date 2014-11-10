@@ -208,10 +208,11 @@
                         /**
                          * Valid/Invalid Message
                          */
+                        var span = $('<span></span>');
                         if (element.parent().hasClass('input-group')) {
-                            element.parent().after('<span></span>');
+                            element.parent().after(span);
                         } else {
-                            element.after('<span></span>');
+                            span = element.after(span);
                         }
 
                         /**
@@ -246,7 +247,7 @@
                             ctrl.$setPristine();
                             ctrl.$setValidity(ctrl.$name, false);
                             ctrl.$render();
-                            element.next().html('');
+                            span.html('');
                         });
 
                         /**
@@ -329,7 +330,7 @@
                                     ctrl.$setViewValue(ctrl.$viewValue);
                                 } else if (ctrl.$pristine) {
                                     // Don't validate form when the input is clean(pristine)
-                                    element.next().html('');
+                                    span.html('');
                                     return;
                                 }
                                 checkValidation(scope, element, attrs, ctrl, validation, value);
@@ -342,7 +343,7 @@
                              * Don't showup the validation Message
                              */
                             attrs.$observe('noValidationMessage', function(value) {
-                                var el = element.next();
+                                var el = span;
                                 if (value == 'true' || value === true) {
                                     el.css('display', 'none');
                                 } else if (value == 'false' || value === false) {
