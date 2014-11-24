@@ -212,7 +212,7 @@
                         if (element.parent().hasClass('input-group')) {
                             element.parent().after(span);
                         } else {
-                            span = element.after(span);
+                            element.after(span);
                         }
 
                         /**
